@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 savePost(description, currentUser);
             }
 
-            private void savePost(String description, ParseUser currentUser) {
+            private void savePost(String description, final ParseUser currentUser) {
                 Post post = new Post();
                 post.setDescription(description);
                 // Post.setImage();
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 post.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
-                        if (e != null){
+                        if (currentUser != null){
                             Log.e(TAG, "Error while saving", e);
                             Toast.makeText(MainActivity.this, "Error while saving", Toast.LENGTH_SHORT).show();
                         }
